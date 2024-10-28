@@ -1,0 +1,15 @@
+{
+  "name": "Movie Recommender",
+  "short_name": "Movie Rec",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/logo-dark.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
