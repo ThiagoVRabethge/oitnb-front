@@ -5,6 +5,7 @@ import Select from "react-select"
 import api from "../services/api"
 import useCatalogStore from "~/store/catalogStore"
 import SelectProps from "../types/types";
+import Swal from "sweetalert2"
 
 export const meta: MetaFunction = () => {
   return [
@@ -87,11 +88,21 @@ export default function Index() {
     api
       .get(`/${selectedMedia}/streaming/${selectedStreaming}/emotion/${selectedEmotion}`)
       .then((response) => {
-        console.log(response)
+        let data = response.data;
 
-        setCatalog(response.data)
+        if (data.length > 0) {
+          setCatalog(response.data);
 
-        navigate("/catalog")
+          navigate("/catalog");
+
+        } else {
+          Swal.fire({
+            title: "Sorry",
+            text: "Not currently available",
+            icon: "question"
+          });
+        }
+
       })
       .catch((error) => console.error(error))
 
