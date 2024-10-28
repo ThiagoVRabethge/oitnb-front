@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import Select from "react-select"
 import api from "../services/api"
 import useCatalogStore from "~/store/catalogStore"
+import SelectProps from "../types/types";
 
 export const meta: MetaFunction = () => {
   return [
@@ -15,11 +16,11 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   const navigate = useNavigate()
 
-  const [streamingsList, setStreamingsList] = useState<{ label: string, value: number }[]>()
+  const [streamingsList, setStreamingsList] = useState<SelectProps[]>()
 
   const [selectedStreaming, setSelectedStreaming] = useState<number>()
 
-  const [emotionsList, setEmotionsList] = useState<{ label: string, value: number }[]>()
+  const [emotionsList, setEmotionsList] = useState<SelectProps[]>()
 
   const [selectedEmotion, setSelectedEmotion] = useState<number>()
 
@@ -46,7 +47,7 @@ export default function Index() {
 
         let streamings = response.data
 
-        let streamingOptions: { label: string, value: number }[] = []
+        let streamingOptions: SelectProps[] = []
 
         streamings && streamings.map((streaming: { name: string, id: number }) => {
           streamingOptions.push({ "label": streaming.name, "value": streaming.id })
@@ -66,7 +67,7 @@ export default function Index() {
 
         let emotions = response.data
 
-        let emotionsOptions: { label: string, value: number }[] = []
+        let emotionsOptions: SelectProps[] = []
 
         emotions && emotions.map((emotion: { name: string, id: number }) => {
           emotionsOptions.push({ "label": emotion.name, "value": emotion.id })
